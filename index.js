@@ -25,6 +25,10 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: err.message || 'Something went wrong' })
 })
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`)
-})
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`)
+    })
+}
+
+module.exports = app
